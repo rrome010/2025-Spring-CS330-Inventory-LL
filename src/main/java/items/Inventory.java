@@ -1,3 +1,5 @@
+//Robert Romero Cs 330
+
 package items;
 
 import containers.LinkedList;
@@ -16,6 +18,16 @@ public class Inventory
      * This is the Default Inventory size.
      */
     public static final int DEFAULT_SIZE = 10;
+
+    /**
+     * This is utility function that takes two ItemStacks and adds the
+     * number of items in the right-hand side stack to the left-hand side stack.
+     * @param lhs stack whose size will be increased
+     * @param rhs stack whose size we need to examine
+     */
+    public static void mergeStacks(ItemStack lhs, ItemStack rhs) {
+        lhs.addItems(rhs.size());
+    }
 
     /**
      * Individual item slots--each ItemStack occupies one slot.
@@ -121,18 +133,12 @@ public class Inventory
     }
 
     /**
-     * This is utility function that takes two ItemStacks and adds the
-     * number of items in the right-hand side stack to the left-hand side stack.
-     *
-     * @param lhs stack whose size will be increased
-     * @param rhs stack whose size we need to examine
-     */
-    public static void mergeStacks(ItemStack lhs, ItemStack rhs) {
-        lhs.addItems(rhs.size());
-    }
-
-    /**
      * Add one or more items to the inventory list.
+     *
+     * This first checks if the item already exists in the inventory.
+     * If a match is found and the item permits stackings the new quantity
+     * is added to the existing stack. or if the inventory has
+     * available slots a new stack is added.
      *
      * @param stack new stack of items to add
      *
